@@ -74,7 +74,7 @@
     <item android:drawable="@drawable/envol_00165" android:duration="16"/>
     <item android:drawable="@drawable/envol_00170" android:duration="16"/>
     <item android:drawable="@drawable/envol_00175" android:duration="16"/>
-    <item android:drawable="@drawable/envol_00179" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00179" android:duration="500"/>
     <item android:drawable="@drawable/envol_00179" android:duration="16"/>
 
 

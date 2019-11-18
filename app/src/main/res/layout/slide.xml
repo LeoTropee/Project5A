@@ -3,7 +3,7 @@
 
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#223">
+    android:background="#453C41">
 
     <GridLayout
         android:layout_width="match_parent"
@@ -64,13 +64,9 @@
 <LinearLayout
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#225">
+    android:background="#453C41">
 
-    <fragment
-        android:id="@+id/map"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-         />
+
 
 
 

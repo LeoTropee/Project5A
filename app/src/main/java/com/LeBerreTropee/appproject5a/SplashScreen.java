@@ -43,7 +43,6 @@ public class SplashScreen extends Activity {
                 else
                 {
                     Intent i = new Intent(SplashScreen.this,MainActivity.class);
-
                     finish();
                     startActivity(i);
                 }

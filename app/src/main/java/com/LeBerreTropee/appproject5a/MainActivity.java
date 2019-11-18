@@ -15,10 +15,10 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        ViewPager viewPager = findViewById(R.id.viewPager);
-//
-//        adapter = new SlideAdapter(this);
-//        viewPager.setAdapter(adapter);
+         ViewPager viewPager = findViewById(R.id.viewPager);
+
+        adapter = new SlideAdapter(this);
+        viewPager.setAdapter(adapter);
 
 
 
