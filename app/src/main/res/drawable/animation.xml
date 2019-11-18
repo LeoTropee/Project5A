@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:oneshot="true">
+    <item android:drawable="@drawable/rotationframe_00000" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00003" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00006" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00009" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00012" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00015" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00018" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00021" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00024" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00027" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00030" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00000" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00003" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00006" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00009" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00012" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00015" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00018" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00021" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00024" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00027" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00030" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00000" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00003" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00006" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00009" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00012" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00015" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00018" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00021" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00024" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00027" android:duration="25" />
+    <item android:drawable="@drawable/rotationframe_00030" android:duration="25" />
+
+
+    <item android:drawable="@drawable/envol_00000" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00005" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00010" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00015" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00020" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00050" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00030" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00035" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00040" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00045" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00050" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00055" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00060" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00065" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00070" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00075" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00080" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00085" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00090" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00095" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00100" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00105" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00110" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00115" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00125" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00150" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00130" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00135" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00140" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00145" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00150" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00155" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00160" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00165" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00170" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00175" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00179" android:duration="16"/>
+    <item android:drawable="@drawable/envol_00179" android:duration="16"/>
+
+
+</animation-list>
