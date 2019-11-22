@@ -42,7 +42,7 @@ public class SplashScreen extends Activity {
                     checkAnimationStatus(time, animationDrawable);
                 else
                 {
-                    Intent i = new Intent(SplashScreen.this,MainActivity.class);
+                    Intent i = new Intent(SplashScreen.this,Search.class);
                     finish();
                     startActivity(i);
                 }

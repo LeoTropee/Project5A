@@ -32,5 +32,13 @@ public class Airport implements Serializable {
         return longitude;
     }
 
-
+    @Override
+    public String toString() {
+        return "Airport{" +
+                "name='" + name + '\'' +
+                ", IACO='" + IACO + '\'' +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                '}';
+    }
 }

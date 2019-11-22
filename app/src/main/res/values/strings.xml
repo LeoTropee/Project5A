@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">AppProject5A</string>
     <string name="Title">Snow</string>
+    <string name="title_activity_search">Search</string>
 </resources>

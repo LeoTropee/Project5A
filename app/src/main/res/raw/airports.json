@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Reykjavik Airport",
+    "IACO": "BIRK",
+    "latitude": 64.1299972534,
+    "longitude": -21.9405994415
+  },
+  {
+    "name": "Svalbard Airport, Longyear",
+    "IACO": "ENSB",
+    "latitude": 78.246101379395,
+    "longitude": 15.465600013733
+  },
+  {
+    "name": "Buttonville Municipal Airport",
+    "IACO": "CYKZ",
+    "latitude": 43.86220169067383,
+    "longitude": -79.37000274658203
+  }
+]

@@ -1,91 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#453C41">
+    android:background="#101228">
 
-    <GridLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_gravity="center"
         android:rowCount="1"
         android:columnCount="3">
+
         <TextView
             android:id="@+id/previousAirport"
 
-            android:layout_width="wrap_content"
+            android:layout_width="200sp"
             android:layout_height="wrap_content"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
             android:layout_row="0"
+            android:layout_rowWeight="1"
             android:layout_column="0"
-            android:layout_gravity="start"
+            android:layout_columnWeight="1"
             android:fadingEdge="horizontal"
             android:scrollHorizontally="true"
-            android:textColor="#fff"
+            android:text="@string/Title"
+            android:textColor="#BECEDE"
             android:textSize="25sp"
-
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             />
 
         <TextView
             android:id="@+id/currentAirport"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:layout_gravity="center"
+
             android:fadingEdge="horizontal"
             android:scrollHorizontally="true"
-            android:textColor="#fff"
+            android:text="@string/Title"
+            android:textColor="#BECEDE"
             android:textSize="30sp"
-            />
+            app:layout_constraintEnd_toStartOf="@+id/nextAirport"
+            app:layout_constraintStart_toEndOf="@+id/previousAirport"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/nextAirport"
-            android:layout_width="wrap_content"
+            android:layout_width="200sp"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
+            android:layout_column="2"
             android:layout_columnWeight="1"
+
             android:padding="5dp"
-            android:textColor="#fff"
-            android:layout_gravity="end"
+            android:text="@string/Title"
+            android:textColor="#BECEDE"
+            android:gravity="end"
 
             android:textSize="25sp"
-            android:layout_column="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
-        />
 
-
-    </GridLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 <LinearLayout
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#453C41">
-
-
-
-
-
+    android:background="#101228">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:src="@drawable/envol_00179"
+        android:contentDescription="logo"/>
     <TextView
         android:padding="16dp"
-        android:id="@+id/txttitle"
+        android:id="@+id/name"
         android:textStyle="bold"
         android:textSize="30sp"
         android:textColor="#fff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
     <TextView
         android:padding="16dp"
-        android:id="@+id/txtdescription"
+        android:id="@+id/lat"
+        android:textAlignment="center"
+        android:textSize="17sp"
+        android:textColor="#fff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:padding="16dp"
+        android:id="@+id/lon"
         android:textAlignment="center"
         android:textSize="17sp"
         android:textColor="#fff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+
+
+
+
+
 </LinearLayout>
+
+
+
 </LinearLayout>

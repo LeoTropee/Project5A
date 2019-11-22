@@ -3,7 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#453C41"
+    android:background="#101228"
     android:theme="@android:style/Theme.Black.NoTitleBar"
     >
 <TextView
@@ -12,7 +12,7 @@
     android:text="@string/Title"
     android:layout_gravity="center"
     android:textSize="35sp"
-    android:textColor="#fff"
+    android:textColor="#BECEDE"
 
     />
 
@@ -21,4 +21,9 @@
     android:id="@+id/viewPager"
     android:layout_width="match_parent"
     android:layout_height="match_parent"/>
+
+
+
+
+
 </LinearLayout>
