@@ -27,7 +27,7 @@ public class SearchLoader {
             line = line.replaceAll("\"","");
             splitLine = line.split(",");
             airportNames.add(splitLine[1]);
-            airportIACO.add(splitLine[2]);
+            airportIACO.add(splitLine[5]);
         }
     } catch (
     FileNotFoundException fileNotFound) {

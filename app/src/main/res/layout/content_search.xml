@@ -6,23 +6,45 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Search"
-    tools:showIn="@layout/activity_search">
+    tools:showIn="@layout/activity_search"
+    android:theme="@android:style/Theme.Black.NoTitleBar">
 
 
     <AutoCompleteTextView
-        android:id="@+id/autocompletion"
+        android:id="@+id/nameSearch"
         android:layout_width="269dp"
         android:layout_height="43dp"
-        android:layout_marginLeft="5dip"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
         android:layout_weight="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <AutoCompleteTextView
+        android:id="@+id/IACOSearch"
+        android:layout_width="269dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="4dp"
+        android:layout_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameSearch" />
 
     <Button
         android:id="@+id/ButtonEnvoyer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Recherche"
-        app:layout_constraintStart_toEndOf="@+id/autocompletion"
+        android:layout_marginTop="5dp"
+        android:drawableLeft="@drawable/ic_search"
+        app:layout_constraintStart_toEndOf="@+id/nameSearch"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:drawableLeft="@drawable/ic_search"
+        app:layout_constraintStart_toEndOf="@+id/IACOSearch"
+        app:layout_constraintTop_toBottomOf="@+id/ButtonEnvoyer" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

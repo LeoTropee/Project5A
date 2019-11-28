@@ -71,11 +71,11 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#101228">
-    <ImageView
+    <com.mapbox.mapboxsdk.maps.MapView
+        android:id="@+id/mapView"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:src="@drawable/envol_00179"
-        android:contentDescription="logo"/>
+        android:layout_height="300sp" />
+
     <TextView
         android:padding="16dp"
         android:id="@+id/name"

@@ -19,7 +19,8 @@ import java.io.IOException;
 
 public class Search extends AppCompatActivity {
 
-     AutoCompleteTextView autoComplete;
+     AutoCompleteTextView nameSearch;
+     AutoCompleteTextView IACOSearch;
 
 
 
@@ -29,25 +30,37 @@ public class Search extends AppCompatActivity {
         SearchLoader loader;
         try {
             loader = new SearchLoader(this.getAssets().open("airportslist.txt"));
-            Log.println(Log.DEBUG,"seach","size " + loader.getAirportNames().size());
 
             //On récupère le tableau de String créé dans le fichier string.xml
-            String[] tableauString = new String[loader.getAirportNames().size()];
-                tableauString = loader.getAirportNames().toArray(tableauString);
+            String[] tableauName = new String[loader.getAirportNames().size()];
+                tableauName = loader.getAirportNames().toArray(tableauName);
+
+            String[] tableauIACO = new String[loader.getAirportIACO().size()];
+            tableauIACO = loader.getAirportIACO().toArray(tableauIACO);
+
 
             //On récupère l'AutoCompleteTextView que l'on a créé dans le fichier main.xml
-            autoComplete = (AutoCompleteTextView) findViewById(R.id.autocompletion);
+            nameSearch = (AutoCompleteTextView) findViewById(R.id.nameSearch);
+            IACOSearch = (AutoCompleteTextView) findViewById(R.id.IACOSearch);
+
 
             //On récupère le bouton que l'on a créé dans le fichier main.xml
             Button boutonRecherche = (Button) findViewById(R.id.ButtonEnvoyer);
 
+
             //On crée la liste d'autocomplétion à partir de notre tableau de string appelé tableauString
             //android.R.layout.simple_dropdown_item_1line permet de définir le style d'affichage de la liste
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                    android.R.layout.simple_dropdown_item_1line, tableauString);
+            ArrayAdapter<String> NameAdapter = new ArrayAdapter<String>(this,
+                    android.R.layout.simple_dropdown_item_1line, tableauName);
+            ArrayAdapter<String> IACOAdapter = new ArrayAdapter<>(this,
+                    android.R.layout.simple_dropdown_item_1line,tableauIACO);
 
             //On affecte cette liste d'autocomplétion à notre objet d'autocomplétion
-            autoComplete.setAdapter(adapter);
+            nameSearch.setAdapter(NameAdapter);
+            nameSearch.setDropDownBackgroundResource(R.color.DropDownTextColor);
+
+            IACOSearch.setAdapter(IACOAdapter);
+            IACOSearch.setDropDownBackgroundResource(R.color.DropDownTextColor);
 
             //Enfin on rajoute un petit écouteur d'évènement sur le bouton pour afficher
             //dans un Toast ce que l'on a rentré dans notre AutoCompleteTextView
@@ -63,6 +76,6 @@ public class Search extends AppCompatActivity {
 
 
     public void onClick() {
-        Toast.makeText(this, autoComplete.getText(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, nameSearch.getText(), Toast.LENGTH_SHORT).show();
     };
 }

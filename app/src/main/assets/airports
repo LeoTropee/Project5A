@@ -16,5 +16,18 @@
     "IACO": "CYKZ",
     "latitude": 43.86220169067383,
     "longitude": -79.37000274658203
-  }
+  },
+  {
+      "name": "Charles de Gaulle International Airport",
+      "IACO": "LFPG",
+      "latitude": 49.012798,
+      "longitude": 2.55
+  },
+  {
+        "name": "Nantes Atlantique Airport",
+        "IACO": "LFRS",
+        "latitude": 47.153198242200006,
+        "longitude": -1.61073005199
+    }
+
 ]

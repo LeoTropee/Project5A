@@ -10,20 +10,27 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.camera.CameraPosition;
+import com.mapbox.mapboxsdk.geometry.LatLng;
+import com.mapbox.mapboxsdk.maps.MapView;
+import com.mapbox.mapboxsdk.maps.MapboxMap;
+import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
+import com.mapbox.mapboxsdk.maps.Style;
+
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 public class SlideAdapter extends PagerAdapter {
     Context context;
     LayoutInflater inflater;
+    private MapView mapView;
 
 
-    // list of titles
-
-
-    // list of descriptions
 
 
 
@@ -31,6 +38,8 @@ public class SlideAdapter extends PagerAdapter {
 
     public SlideAdapter(Context context) {
         this.context = context;
+        Mapbox.getInstance(context, "pk.eyJ1IjoiYmFyYm91aWxsZSIsImEiOiJjazNlN3BvaHIxY3F1M2NuM2pvM3dwOTBlIn0.pZrTwcJxH6x1EU6RFrmceg");
+
 
     }
 
@@ -53,10 +62,29 @@ public class SlideAdapter extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(ViewGroup container, final int position) {
         inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.slide,container,false);
 
+        mapView = view.findViewById(R.id.mapView);
+        mapView.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(@NonNull MapboxMap mapboxMap) {
+                mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
+                    @Override
+                    public void onStyleLoaded(@NonNull Style style) {
+
+// Map is set up and the style has loaded. Now you can add data or make other map adjustments.
+
+
+                    }
+                });
+                mapboxMap.setCameraPosition(new CameraPosition.Builder()
+                        .target(new LatLng(airports.get(position).getLatitude(), airports.get(position).getLongitude())).zoom(11.5).build());
+                mapboxMap.setMinZoomPreference(7);
+                mapboxMap.setMaxZoomPreference(15);
+            }
+        });
         TextView name = (TextView) view.findViewById(R.id.name);
 
         TextView lat = (TextView) view.findViewById(R.id.lat);
