@@ -2,8 +2,12 @@ package com.LeBerreTropee.appproject5a;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -47,6 +51,22 @@ public class MainActivity extends Activity {
         adapter.airports = set;
 
         viewPager.setAdapter(adapter);
+        String snowtam = ">>> ENSB (SVALBARD/LONGYEAR RWY 10/28) <<< \n" +
+                "\n" +
+                "SWEN0311 ENSB 10130958\n" +
+                "(SNOWTAM 0311\n" +
+                "A) ENSB\n" +
+                "B) 10130958 C) 10\n" +
+                "F) 7/7/7 G) XX/XX/XX H) 4/4/3\n" +
+                "N) ALL REPORTED TWYS/2\n" +
+                "R) ALL REPORTED APRONS/2\n" +
+                "T) CONTAMINATION/100/100/100/PERCENT.\n" +
+                ")\n";
+        Parser pars = new Parser();
+        Snowtam snow = pars.parse(snowtam);
+
+        TextView title = (TextView) findViewById(R.id.appTitle);
+
 
 
 
@@ -72,5 +92,8 @@ public class MainActivity extends Activity {
     }
 
 
-
+    public void addAirport(View view) {
+        Intent i = new Intent(MainActivity.this,Search.class);
+        startActivity(i);
+    }
 }

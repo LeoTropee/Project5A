@@ -83,6 +83,7 @@ public class SlideAdapter extends PagerAdapter {
                         .target(new LatLng(airports.get(position).getLatitude(), airports.get(position).getLongitude())).zoom(11.5).build());
                 mapboxMap.setMinZoomPreference(7);
                 mapboxMap.setMaxZoomPreference(15);
+                mapboxMap.setStyle(Style.SATELLITE);
             }
         });
         TextView name = (TextView) view.findViewById(R.id.name);

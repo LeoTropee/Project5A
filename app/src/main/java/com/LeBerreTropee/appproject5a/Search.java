@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -45,7 +46,7 @@ public class Search extends AppCompatActivity {
 
 
             //On récupère le bouton que l'on a créé dans le fichier main.xml
-            Button boutonRecherche = (Button) findViewById(R.id.ButtonEnvoyer);
+            ImageButton boutonRecherche = (ImageButton) findViewById(R.id.ButtonEnvoyer);
 
 
             //On crée la liste d'autocomplétion à partir de notre tableau de string appelé tableauString
