@@ -56,7 +56,7 @@ public class MainActivity extends Activity {
                 "SWEN0311 ENSB 10130958\n" +
                 "(SNOWTAM 0311\n" +
                 "A) ENSB\n" +
-                "B) 10130958 C) 10\n" +
+                "B) 11130958 C) 11\n" +
                 "F) 7/7/7 G) XX/XX/XX H) 4/4/3\n" +
                 "N) ALL REPORTED TWYS/2\n" +
                 "R) ALL REPORTED APRONS/2\n" +
@@ -64,8 +64,12 @@ public class MainActivity extends Activity {
                 ")\n";
         Parser pars = new Parser();
         Snowtam snow = pars.parse(snowtam);
+        //pars.decode(snow);
 
         TextView title = (TextView) findViewById(R.id.appTitle);
+        String text = snow.getDate() + " " + snow.getRunway();
+
+        title.setText(text);
 
 
 
