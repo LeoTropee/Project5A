@@ -30,21 +30,32 @@
         app:layout_constraintTop_toBottomOf="@+id/nameSearch" />
 
     <ImageButton
-        android:id="@+id/ButtonEnvoyer"
+        android:id="@+id/nameSearchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:src="@drawable/ic_search"
         app:layout_constraintStart_toEndOf="@+id/nameSearch"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="nameSearch"/>
 
     <ImageButton
+        android:id="@+id/IACOSearchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:onClick="IACOSearch"
         android:src="@drawable/ic_search"
         app:layout_constraintStart_toEndOf="@+id/IACOSearch"
-        app:layout_constraintTop_toBottomOf="@+id/ButtonEnvoyer" />
+        app:layout_constraintTop_toBottomOf="@+id/nameSearchButton" />
+
+    <TextView
+        android:id="@+id/fuckthisshit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,10 @@ public class Airport implements Serializable {
     private final double latitude;
     private final double longitude;
 
+    private transient Snowtam snowtam;
+
+
+
     public Airport(String name, String IACO, double latitude, double longitude) {
         this.name = name;
         this.IACO = IACO;
@@ -30,6 +34,14 @@ public class Airport implements Serializable {
 
     public double getLongitude() {
         return longitude;
+    }
+
+    public Snowtam getSnowtam() {
+        return snowtam;
+    }
+
+    public void setSnowtam(Snowtam snowtam) {
+        this.snowtam = snowtam;
     }
 
     @Override

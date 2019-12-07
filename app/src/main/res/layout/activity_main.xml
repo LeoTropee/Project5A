@@ -38,8 +38,9 @@
         android:layout_height="wrap_content"
         android:onClick="addAirport"
         android:foregroundGravity="center"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/ic_add"
         android:background="#becede"
+        android:layout_margin="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/layout"
         app:layout_constraintEnd_toEndOf="@id/layout"
         app:layout_constraintLeft_toLeftOf="@id/layout" />

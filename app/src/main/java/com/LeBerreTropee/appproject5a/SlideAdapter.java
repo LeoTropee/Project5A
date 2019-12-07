@@ -20,23 +20,21 @@ import com.mapbox.mapboxsdk.maps.Style;
 
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 public class SlideAdapter extends PagerAdapter {
-    Context context;
-    LayoutInflater inflater;
+    private Context context;
+    private LayoutInflater inflater;
     private MapView mapView;
 
 
 
 
+    private ArrayList<Airport> airports;
 
-    public ArrayList<Airport> airports;
-
-    public SlideAdapter(Context context) {
+    SlideAdapter(Context context) {
         this.context = context;
         Mapbox.getInstance(context, "pk.eyJ1IjoiYmFyYm91aWxsZSIsImEiOiJjazNlN3BvaHIxY3F1M2NuM2pvM3dwOTBlIn0.pZrTwcJxH6x1EU6RFrmceg");
 
@@ -48,6 +46,13 @@ public class SlideAdapter extends PagerAdapter {
         this.airports = list;
     }
 
+     ArrayList<Airport> getAirports() {
+        return airports;
+    }
+
+     void setAirports(ArrayList<Airport> airports) {
+        this.airports = airports;
+    }
 
 
 
@@ -57,13 +62,14 @@ public class SlideAdapter extends PagerAdapter {
     }
 
     @Override
-    public boolean isViewFromObject(View view, Object object) {
-        return (view==(LinearLayout)object);
+    public boolean isViewFromObject(@NonNull View view, Object object) {
+        return (view==object);
     }
 
+    @NonNull
     @Override
     public Object instantiateItem(ViewGroup container, final int position) {
-        inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.slide,container,false);
 
         mapView = view.findViewById(R.id.mapView);
@@ -88,8 +94,7 @@ public class SlideAdapter extends PagerAdapter {
         });
         TextView name = (TextView) view.findViewById(R.id.name);
 
-        TextView lat = (TextView) view.findViewById(R.id.lat);
-        TextView lon = (TextView) view.findViewById(R.id.lon);
+        TextView lon = (TextView) view.findViewById(R.id.snowtam);
 
         TextView previousAirport = (TextView) view.findViewById(R.id.previousAirport);
         TextView currentAirport = (TextView) view.findViewById(R.id.currentAirport);
@@ -115,7 +120,6 @@ public class SlideAdapter extends PagerAdapter {
         }
 
         name.setText(airports.get(position).getName());
-        lat.setText("" + airports.get(position).getLatitude());
         lon.setText("" + airports.get(position).getLongitude());
 
 
