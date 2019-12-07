@@ -1,7 +1,6 @@
 package com.LeBerreTropee.appproject5a;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,10 +13,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -64,7 +61,7 @@ public class MainActivity extends Activity {
 
         TextView title = findViewById(R.id.appTitle);
 
-        TestPOST testPOST = new TestPOST(this);
+        POSTRequest testPOST = new POSTRequest(this);
         Log.println(Log.DEBUG,"ok",">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.post created");
 
         testPOST.POST();
