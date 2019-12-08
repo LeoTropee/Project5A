@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,16 +11,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_gravity="center"
-        android:rowCount="1"
-        android:columnCount="3">
+        android:columnCount="3"
+        android:orientation="horizontal"
+        android:rowCount="1">
 
         <TextView
             android:id="@+id/previousAirport"
 
-            android:layout_width="200sp"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_row="0"
             android:layout_rowWeight="1"
             android:layout_column="0"
@@ -27,43 +28,43 @@
             android:fadingEdge="horizontal"
             android:scrollHorizontally="true"
             android:text="@string/Title"
+            android:textAlignment="viewStart"
             android:textColor="#BECEDE"
             android:textSize="25sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/currentAirport"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
 
             android:fadingEdge="horizontal"
             android:scrollHorizontally="true"
             android:text="@string/Title"
             android:textColor="#BECEDE"
             android:textSize="30sp"
-            app:layout_constraintEnd_toStartOf="@+id/nextAirport"
-            app:layout_constraintStart_toEndOf="@+id/previousAirport"
+            app:layout_constraintEnd_toEndOf="@+id/nextAirport"
+            app:layout_constraintStart_toStartOf="@+id/previousAirport"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/nextAirport"
-            android:layout_width="200sp"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_rowWeight="1"
             android:layout_column="2"
             android:layout_columnWeight="1"
 
+            android:gravity="end"
             android:padding="5dp"
             android:text="@string/Title"
-            android:textColor="#BECEDE"
-            android:gravity="end"
+            android:textAlignment="viewEnd"
 
+            android:textColor="#BECEDE"
             android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

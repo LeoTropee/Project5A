@@ -18,6 +18,7 @@ public class Airport implements Serializable {
         this.IACO = IACO;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.setSnowtam(new Snowtam());
     }
 
     public String getName() {

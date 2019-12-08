@@ -1,8 +1,11 @@
 <resources>
-    <string name="app_name">AppProject5A</string>
+    <string name="app_name">SnowTam Comander</string>
     <string name="Title">Snow</string>
     <string name="title_activity_search">Search</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_snowtam">No snowtam available.</string>
+    <string name="error_snowtam">Unable to check for snowtam</string>
+    <string name="loading">Loading...</string>
 </resources>

@@ -1,8 +1,6 @@
 package com.LeBerreTropee.appproject5a;
 
 import android.content.Context;
-import android.os.Build;
-import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -15,23 +13,20 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-import androidx.annotation.RequiresApi;
 
-public class POSTRequest {
+ class POSTRequest {
 
-    Context context;
-    RequestQueue queue;
+    private Context context;
+    private RequestQueue queue;
 
-    public POSTRequest(Context context) {
+     POSTRequest(Context context) {
         this.context = context;
         queue = Volley.newRequestQueue(context);
     }
 
-    public interface SnowtamCallback {
-        void onSucess(String result);
-    }
 
-    public void POST() {
+
+     void POST(final String IACO, final SnowtamCallback callback) {
         RequestQueue queue = Volley.newRequestQueue(context);
         String url = "http://notamweb.aviation-civile.gouv.fr/Script/IHM/Bul_Aerodrome.php?Langue=FR";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -39,13 +34,13 @@ public class POSTRequest {
                     @Override
                     public void onResponse(String response) {
 
-                        //callback.onSucess(parseHTML(response));
-                        Log.d("" ,"parse HTML : " + parseHTML(response));
+                        callback.onSucess(Parser.parse(parseHTML(response)));
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        callback.onError(error);
                     }
                 }) {
             @Override
@@ -73,7 +68,7 @@ public class POSTRequest {
                 String hour = hourOfDay + ":" + minute;
 
 
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("bResultat", "true");
                 params.put("ModeAffichage", "COMPLET");
                 params.put("AERO_Date_DATE", date);
@@ -86,7 +81,7 @@ public class POSTRequest {
                 params.put("AERO_Rayon", "10");
                 params.put("AERO_Plafond", "30");
 
-                params.put("AERO_Tab_Aero[0]", "ENBO");
+                params.put("AERO_Tab_Aero[0]", IACO);
 
                 return params;
             }
@@ -99,10 +94,11 @@ public class POSTRequest {
 
         queue.add(stringRequest);
     }
-    public String parseHTML(String html){
-        int size=0;
-        for(int i=0; i<html.length(); i++){
-            if(html.charAt(i) == 'S' && html.charAt(i+1) == 'W' && html.charAt(i+2) == 'E' && html.charAt(i+3) == 'N'){
+
+     String parseHTML(String html) {
+        int size = 0;
+        for (int i = 0; i < html.length(); i++) {
+            if (html.charAt(i) == 'S' && html.charAt(i + 1) == 'W' && html.charAt(i + 2) == 'E' && html.charAt(i + 3) == 'N') {
                 size++;
             }
         }
@@ -110,14 +106,14 @@ public class POSTRequest {
         int compteur = 0;
         int endIndex = 0;
         int startIndex = 0;
-        while (compteur<size) {
+        while (compteur < size) {
             startIndex = html.indexOf("SWEN", startIndex + 1);
             endIndex = startIndex;
-            while(html.charAt(endIndex) != '<'){
+            while (html.charAt(endIndex) != '<') {
                 endIndex++;
             }
-            compteur ++;
-            result += html.substring(startIndex,endIndex) + "#";
+            compteur++;
+            result += html.substring(startIndex, endIndex) + "#";
         }
         return result;
     }

@@ -4,12 +4,14 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.VolleyError;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.geometry.LatLng;
@@ -28,16 +30,20 @@ public class SlideAdapter extends PagerAdapter {
     private Context context;
     private LayoutInflater inflater;
     private MapView mapView;
+    POSTRequest postRequest;
 
 
+
+
+    private Airport currentAirport;
 
 
     private ArrayList<Airport> airports;
 
-    SlideAdapter(Context context) {
+    SlideAdapter(Context context,POSTRequest postRequest) {
         this.context = context;
         Mapbox.getInstance(context, "pk.eyJ1IjoiYmFyYm91aWxsZSIsImEiOiJjazNlN3BvaHIxY3F1M2NuM2pvM3dwOTBlIn0.pZrTwcJxH6x1EU6RFrmceg");
-
+        this.postRequest = postRequest;
 
     }
 
@@ -55,6 +61,9 @@ public class SlideAdapter extends PagerAdapter {
     }
 
 
+    public Airport getCurrentAirport() {
+        return currentAirport;
+    }
 
     @Override
     public int getCount() {
@@ -79,10 +88,6 @@ public class SlideAdapter extends PagerAdapter {
                 mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
                     @Override
                     public void onStyleLoaded(@NonNull Style style) {
-
-// Map is set up and the style has loaded. Now you can add data or make other map adjustments.
-
-
                     }
                 });
                 mapboxMap.setCameraPosition(new CameraPosition.Builder()
@@ -94,15 +99,64 @@ public class SlideAdapter extends PagerAdapter {
         });
         TextView name = (TextView) view.findViewById(R.id.name);
 
-        TextView lon = (TextView) view.findViewById(R.id.snowtam);
+        final TextView snowtamText = (TextView) view.findViewById(R.id.snowtam);
+        snowtamText.setText(R.string.loading);
+        postRequest.POST(airports.get(position).getIACO(), new SnowtamCallback() {
+            @Override
+            public void onSucess(Snowtam snowtam) {
+                try {
+
+
+                    airports.get(position).setSnowtam(snowtam);
+                    if (snowtam != null) {
+                        snowtamText.setText(snowtam.toString());
+                    } else {
+                        snowtamText.setText(R.string.no_snowtam);
+                    }
+                }catch (IndexOutOfBoundsException ioob)
+                {
+                    Log.d("too bad",ioob.getMessage() );
+                }
+            }
+
+            @Override
+            public void onError(VolleyError error) {
+                snowtamText.setText(R.string.error_snowtam);
+            }
+        });
+
+
 
         TextView previousAirport = (TextView) view.findViewById(R.id.previousAirport);
-        TextView currentAirport = (TextView) view.findViewById(R.id.currentAirport);
+        TextView currentAirportText = (TextView) view.findViewById(R.id.currentAirport);
         TextView nextAirport = (TextView) view.findViewById(R.id.nextAirport);
 
-        currentAirport.setText(airports.get(position).getIACO());
+        currentAirportText.setText(airports.get(position).getIACO());
 
-        if (position == 0)
+        if(this.getCount() <= 2)
+        {
+            //There is a bug about the position offset by one when first loading
+            previousAirport.setText("");
+            nextAirport.setText("");
+            try
+            {
+                nextAirport.setText(airports.get(position+1).getIACO());
+
+            }catch (IndexOutOfBoundsException e)
+            {
+
+            }
+            try
+            {
+                previousAirport.setText(airports.get(position-1).getIACO());
+
+            }catch (IndexOutOfBoundsException e)
+            {
+
+            }
+
+        }
+        else if (position == 0 )
         {
             previousAirport.setText("");
             nextAirport.setText(airports.get(position+1).getIACO());
@@ -120,13 +174,11 @@ public class SlideAdapter extends PagerAdapter {
         }
 
         name.setText(airports.get(position).getName());
-        lon.setText("" + airports.get(position).getLongitude());
+        currentAirport = airports.get(position);
+    Log.d("","Current airport + position" + currentAirport + " " + airports.indexOf(currentAirport));
 
 
 
-//        layoutslide.setBackgroundColor(lst_backgroundcolor[position]);
-//        imgslide.setImageResource(lst_images[position]);
-//        txttitle.setText(lst_title[position]);
         float width = previousAirport.getPaint().measureText((String)previousAirport.getText());
         Shader textShader=new LinearGradient(0, 0, width , previousAirport.getText().length(),
                 new int[]{
@@ -146,6 +198,8 @@ public class SlideAdapter extends PagerAdapter {
 
 
         container.addView(view);
+        currentAirport = airports.get(position);
+
         return view;
     }
 

@@ -1,4 +1,10 @@
 package com.LeBerreTropee.appproject5a;
 
-class SnowtamCallback {
+import com.android.volley.VolleyError;
+
+interface SnowtamCallback {
+
+    void onSucess(Snowtam snowtam);
+
+    void onError(VolleyError error);
 }

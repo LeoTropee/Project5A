@@ -42,4 +42,12 @@ public class Snowtam {
     public void setRunway(String runway) {
         this.runway = runway;
     }
+
+    @Override
+    public String toString() {
+        return "Snowtam\n" +
+                "oaci='" + oaci + '\'' +
+                ", date='" + date + '\'' +
+                ", runway='" + runway + "\'\n";
+    }
 }
