@@ -1,6 +1,8 @@
 package com.LeBerreTropee.appproject5a;
 
+import android.content.Context;
 import android.util.Log;
+
 
 import java.util.HashMap;
 
@@ -8,9 +10,10 @@ import java.util.HashMap;
 
 public class  Parser {
 
+
         static Snowtam parse(String stringSnowtam)
         {
-                Log.d("", stringSnowtam);
+
 
                 String oaci = "";
                 String date = "";
@@ -34,11 +37,16 @@ public class  Parser {
                 String rollOut = "";
 
                 int id = 0;
+                int end = 0;
 
 
-                id = stringSnowtam.indexOf("A)",id) + 2 ;
-                int end = stringSnowtam.indexOf("B)",id);
-                oaci = stringSnowtam.substring(id,end).trim();
+
+                if(stringSnowtam.contains("A)"))
+                {
+                        id = stringSnowtam.indexOf("A)",id) + 2 ;
+                        end = stringSnowtam.indexOf(")",id)-1;
+                        oaci = stringSnowtam.substring(id,end).trim();
+                }
 
                 if(stringSnowtam.contains("B)"))
                 {
@@ -56,18 +64,18 @@ public class  Parser {
 
                         HashMap<String, String> nomMois = new HashMap<String, String>();
 
-                        nomMois.put("01","JANVIER");
-                        nomMois.put("02","FEVRIER ");
-                        nomMois.put("03","MARS");
-                        nomMois.put("04","AVRIL");
-                        nomMois.put("05","MAI");
-                        nomMois.put("06","JUIN");
-                        nomMois.put("07","JUILLET");
-                        nomMois.put("08","AOUT");
-                        nomMois.put("09","SEPTEMBRE");
-                        nomMois.put("10","OCTOBRE");
-                        nomMois.put("11","NOVEMBRE");
-                        nomMois.put("12","DECEMBRE");
+                        nomMois.put("01","January");
+                        nomMois.put("02","February ");
+                        nomMois.put("03","March");
+                        nomMois.put("04","April");
+                        nomMois.put("05","May");
+                        nomMois.put("06","June");
+                        nomMois.put("07","July");
+                        nomMois.put("08","August");
+                        nomMois.put("09","September");
+                        nomMois.put("10","October");
+                        nomMois.put("11","November");
+                        nomMois.put("12","December");
 
 
                         heure = heure  + "h" + minutes + " UTC";
@@ -84,17 +92,26 @@ public class  Parser {
 
                         //decode C)
 
-                        int numWay = Integer.parseInt(runway);
-                        if (numWay > 50)
-                        {
-                                numWay = numWay % 50;
-                                runway = "RUNWAY " + Integer.toString(numWay);
-                        }
-                        if (numWay == 88){
-                                runway = "ALL RUNWAYS";
+                        if(runway.contains("L") || runway.contains("R")) {
+
+                                end = runway.length()-1;
+                                runway = "RUNWAY " + runway.substring(0,end);
+
                         }
                         else{
-                                runway = "RUNWAY " + Integer.toString(numWay);
+                                int numWay = Integer.parseInt(runway);
+
+                                if (numWay > 50)
+                                {
+                                        numWay = numWay % 50;
+                                        runway = "RUNWAY " + Integer.toString(numWay);
+                                }
+                                if (numWay == 88){
+                                        runway = "ALL RUNWAYS";
+                                }
+                                else{
+                                        runway = "RUNWAY " + Integer.toString(numWay);
+                                }
                         }
 
                 }
@@ -184,6 +201,18 @@ public class  Parser {
                         }
                         roll += " "+ conditions.get(rollOut.substring(i));
 
+                        if(conditions.get(threshold.substring(0,1))==null)
+                        {
+                                thr = "UNKNOWN";
+                        }
+                        if(conditions.get(mid.substring(0,1))==null)
+                        {
+                                mi = "UNKNOWN";
+                        }
+                        if(conditions.get(roll.substring(0,1))==null)
+                        {
+                                roll = "UNKNOWN";
+                        }
 
                         state = "Threshold: " + thr + " / Mid runway: " + mi + " / Roll out: " +roll;
 
@@ -213,14 +242,21 @@ public class  Parser {
                         }
 
 
+
                 }
 
+                if(stringSnowtam.contains("H)")) {
+                        id = stringSnowtam.indexOf("H)", end) + 2;
+                        end = stringSnowtam.indexOf(")", id) - 1;
+                        criticalSnowbanks = stringSnowtam.substring(id, end).trim();
 
 
-                Snowtam snowtam = new Snowtam(oaci,date,runway,clearedL,clearedW,state,meanDepth,criticalSnowbanks,light,clearance,anticipedTime,taxiways,snowbanks,parking,nextObservation,remark);
+                        //decode H)
+                }
+
+                Snowtam snowtam = new Snowtam(stringSnowtam,oaci,date,runway,clearedL,clearedW,state,meanDepth,criticalSnowbanks,light,clearance,anticipedTime,taxiways,snowbanks,parking,nextObservation,remark);
 
                 return (snowtam);
-
         }
 
 

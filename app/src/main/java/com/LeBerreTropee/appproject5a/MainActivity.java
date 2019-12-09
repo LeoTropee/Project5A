@@ -1,16 +1,13 @@
 package com.LeBerreTropee.appproject5a;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.VolleyError;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -25,13 +22,11 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    private ViewPager viewPager;
     private SlideAdapter adapter;
     ArrayList<Airport> set;
     POSTRequest postRequest;
@@ -66,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (this.getIntent().getSerializableExtra("airport") != null) {
-            Log.println(Log.DEBUG, "", "-----------------------------------------------------");
             Airport ap = (Airport) this.getIntent().getSerializableExtra("airport");
             adapter.getAirports().add(ap);
             adapter.notifyDataSetChanged();
@@ -78,9 +72,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public void updateSnowTam() {
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -134,7 +125,6 @@ public class MainActivity extends AppCompatActivity {
             }
             InputRead.close();
             if (s.length() < 5) {
-                Log.println(Log.DEBUG, "LoadDemo", "Log Demo, should only appear at first launch");
                 StringBuilder sb = new StringBuilder();
                 InputStream test = getAssets().open("DemoAirports");
                 InputStreamReader isr = new InputStreamReader(test);
@@ -165,15 +155,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Delete(MenuItem item) {
-        ArrayList<Airport> al =(ArrayList<Airport>) adapter.getAirports().clone();
 
 
-        al.remove(adapter.getCurrentAirport());
-        adapter.setAirports(al);
+        adapter.getAirports().remove(adapter.getCurrentAirport());
         adapter.notifyDataSetChanged();
         this.Write();
         Intent i = new Intent(this,MainActivity.class);
         startActivity(i);
-        Log.d("","??????????????????????????????????????????/ "+ adapter.getCount()+ "  "+ al.size());
     }
 }

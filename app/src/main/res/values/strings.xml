@@ -1,11 +1,35 @@
 <resources>
-    <string name="app_name">SnowTam Comander</string>
-    <string name="Title">Snow</string>
-    <string name="title_activity_search">Search</string>
+    <string name="app_name">SnowTam Commander</string>
+    <string name="title_activity_search">Recherche</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_snowtam">No snowtam available.</string>
-    <string name="error_snowtam">Unable to check for snowtam</string>
-    <string name="loading">Loading...</string>
+    <string name="error_snowtam">Unable to check for Snowtam</string>
+    <string name="loading">Loading…</string>
+    <string name="date">Date : </string>
+    <string name="runway">Runway :</string>
+    <string name="state">State : </string>
+
+    <string name="january">January</string>
+    <string name="february">February</string>
+    <string name="march">March</string>
+    <string name="april">April</string>
+    <string name="may">May</string>
+    <string name="june">June</string>
+    <string name="july">July</string>
+    <string name="august">August</string>
+    <string name="september">September</string>
+    <string name="october">October</string>
+    <string name="november">November</string>
+    <string name="december">December</string>
+
+    <string name="clear">CLEAR AND DRY</string>
+    <string name="damp">DAMP</string>
+    <string name="wet">WET or WATER PATCHES</string>
+    <string name="rime">RIME OR FROST COVERED</string>
+    <string name="dry">DRY SNOW</string>
+    <string name="wetSnow">WET SNOW</string>
+    <string name="slush">SLUSH</string>
+    <string name="ice">ICE</string>
+    <string name="comp">COMPACTED OR ROLLED SNOW</string>
+    <string name="frozen">FROZEN RUTS OR RIDGES</string>
 </resources>

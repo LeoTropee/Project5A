@@ -2,6 +2,7 @@ package com.LeBerreTropee.appproject5a;
 
 public class Snowtam {
 
+    private String coded;
     private String oaci;
     private String date;
     private String runway;
@@ -38,7 +39,8 @@ public class Snowtam {
         remark="";
     }
 
-    public Snowtam(String oaci, String date, String runway, String clearedL, String clearedW, String state, String meanDepth, String criticalSnowbanks, String light, String clearance, String anticipedTime, String taxiways, String snowbanks, String parking, String nextObservation, String remark) {
+    public Snowtam(String coded,String oaci, String date, String runway, String clearedL, String clearedW, String state, String meanDepth, String criticalSnowbanks, String light, String clearance, String anticipedTime, String taxiways, String snowbanks, String parking, String nextObservation, String remark) {
+        this.coded =
         this.oaci = oaci;
         this.date = date;
         this.runway = runway;

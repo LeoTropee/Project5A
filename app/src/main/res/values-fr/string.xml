@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SnowTam Comander</string>
+    <string name="title_activity_search">Recherche</string>
+
+    <string name="no_snowtam">Pas de snowTam disponible.</string>
+    <string name="error_snowtam">Impossible de récuperer le snowTam.</string>
+    <string name="loading">En attente…</string>
+    <string name="date">Date : </string>
+    <string name="runway">Piste :</string>
+    <string name="state">Etat : </string>
+
+    <string name="january">Janvier</string>
+    <string name="february">Fevrier</string>
+    <string name="march">Mars</string>
+    <string name="april">Avril</string>
+    <string name="may">Mai</string>
+    <string name="june">Juin</string>
+    <string name="july">Juillet</string>
+    <string name="august">Aout</string>
+    <string name="september">Septembre</string>
+    <string name="october">Octobre</string>
+    <string name="november">Novembre</string>
+    <string name="december">Decembre</string>
+
+    <string name="clear">PISTE DÉBLAYÉE ET SÈCHE</string>
+    <string name="damp">HUMIDE</string>
+    <string name="wet">MOUILLÉE OU FLAQUES D\'EAU</string>
+    <string name="rime">GIVRE OU GELÉE BLANCHE</string>
+    <string name="dry">NEIGE SÈCHE</string>
+    <string name="wetSnow">NEIGE MOUILLÉE</string>
+    <string name="slush">NEIGE FONDANTE</string>
+    <string name="ice">GLACE</string>
+    <string name="comp">NEIGE COMPACTÉE</string>
+    <string name="frozen">ORNIÈRES ET ARÊTES</string>
+</resources>

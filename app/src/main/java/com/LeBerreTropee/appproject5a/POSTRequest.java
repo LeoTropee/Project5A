@@ -1,6 +1,7 @@
 package com.LeBerreTropee.appproject5a;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -41,6 +42,7 @@ import java.util.Map;
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         callback.onError(error);
+                        Log.d("",error.toString());
                     }
                 }) {
             @Override
@@ -95,16 +97,16 @@ import java.util.Map;
         queue.add(stringRequest);
     }
 
-     String parseHTML(String html) {
+     private String parseHTML(String html) {
         int size = 0;
         for (int i = 0; i < html.length(); i++) {
             if (html.charAt(i) == 'S' && html.charAt(i + 1) == 'W' && html.charAt(i + 2) == 'E' && html.charAt(i + 3) == 'N') {
                 size++;
             }
         }
-        String result = "";
+        StringBuilder result = new StringBuilder();
         int compteur = 0;
-        int endIndex = 0;
+        int endIndex;
         int startIndex = 0;
         while (compteur < size) {
             startIndex = html.indexOf("SWEN", startIndex + 1);
@@ -113,10 +115,17 @@ import java.util.Map;
                 endIndex++;
             }
             compteur++;
-            result += html.substring(startIndex, endIndex) + "#";
+            result.append(html.substring(startIndex, endIndex)).append("#");
         }
-        return result;
+        return result.toString();
     }
 
 
-}
+     public RequestQueue getQueue() {
+         return queue;
+     }
+
+     public void setQueue(RequestQueue queue) {
+         this.queue = queue;
+     }
+ }

@@ -22,6 +22,7 @@ import com.mapbox.mapboxsdk.maps.Style;
 
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
@@ -30,7 +31,7 @@ public class SlideAdapter extends PagerAdapter {
     private Context context;
     private LayoutInflater inflater;
     private MapView mapView;
-    POSTRequest postRequest;
+    private POSTRequest postRequest;
 
 
 
@@ -61,7 +62,7 @@ public class SlideAdapter extends PagerAdapter {
     }
 
 
-    public Airport getCurrentAirport() {
+    Airport getCurrentAirport() {
         return currentAirport;
     }
 
@@ -71,15 +72,16 @@ public class SlideAdapter extends PagerAdapter {
     }
 
     @Override
-    public boolean isViewFromObject(@NonNull View view, Object object) {
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
         return (view==object);
     }
 
     @NonNull
     @Override
-    public Object instantiateItem(ViewGroup container, final int position) {
+    public Object instantiateItem(@NonNull ViewGroup container, final int position) {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.slide,container,false);
+
+        final View view = inflater.inflate(R.layout.slide,container,false);
 
         mapView = view.findViewById(R.id.mapView);
         mapView.getMapAsync(new OnMapReadyCallback() {
@@ -97,9 +99,9 @@ public class SlideAdapter extends PagerAdapter {
                 mapboxMap.setStyle(Style.SATELLITE);
             }
         });
-        TextView name = (TextView) view.findViewById(R.id.name);
+        TextView name = view.findViewById(R.id.name);
 
-        final TextView snowtamText = (TextView) view.findViewById(R.id.snowtam);
+        final TextView snowtamText = view.findViewById(R.id.snowtam);
         snowtamText.setText(R.string.loading);
         postRequest.POST(airports.get(position).getIACO(), new SnowtamCallback() {
             @Override
@@ -108,14 +110,17 @@ public class SlideAdapter extends PagerAdapter {
 
 
                     airports.get(position).setSnowtam(snowtam);
-                    if (snowtam != null) {
-                        snowtamText.setText(snowtam.toString());
+                    if (!snowtam.getOaci().isEmpty()) {
+                        //snowtamText.setText(snowtam.toString());
+                        snowtamText.setText("");
+                        updateSnowtam(view,snowtam);
+
                     } else {
                         snowtamText.setText(R.string.no_snowtam);
                     }
                 }catch (IndexOutOfBoundsException ioob)
                 {
-                    Log.d("too bad",ioob.getMessage() );
+                    Log.d("too bad", Objects.requireNonNull(ioob.getMessage()));
                 }
             }
 
@@ -127,9 +132,9 @@ public class SlideAdapter extends PagerAdapter {
 
 
 
-        TextView previousAirport = (TextView) view.findViewById(R.id.previousAirport);
-        TextView currentAirportText = (TextView) view.findViewById(R.id.currentAirport);
-        TextView nextAirport = (TextView) view.findViewById(R.id.nextAirport);
+        TextView previousAirport = view.findViewById(R.id.previousAirport);
+        TextView currentAirportText = view.findViewById(R.id.currentAirport);
+        TextView nextAirport = view.findViewById(R.id.nextAirport);
 
         currentAirportText.setText(airports.get(position).getIACO());
 
@@ -144,7 +149,7 @@ public class SlideAdapter extends PagerAdapter {
 
             }catch (IndexOutOfBoundsException e)
             {
-
+                Log.d("Out of bound", e.toString());
             }
             try
             {
@@ -152,6 +157,7 @@ public class SlideAdapter extends PagerAdapter {
 
             }catch (IndexOutOfBoundsException e)
             {
+                Log.d("Out of bound", e.toString());
 
             }
 
@@ -178,7 +184,25 @@ public class SlideAdapter extends PagerAdapter {
     Log.d("","Current airport + position" + currentAirport + " " + airports.indexOf(currentAirport));
 
 
+        final TextView dateTitle = view.findViewById(R.id.dateTitle);
+        final TextView runwayTitle = view.findViewById(R.id.runwayTitle);
+        final TextView stateTitle = view.findViewById(R.id.stateTitle);
 
+
+        dateTitle.setVisibility(View.INVISIBLE);
+        runwayTitle.setVisibility(View.INVISIBLE);
+        stateTitle.setVisibility(View.INVISIBLE);
+
+
+        setGradient(previousAirport,nextAirport);
+        container.addView(view);
+        currentAirport = airports.get(position);
+
+        return view;
+    }
+
+    private void setGradient(TextView previousAirport,TextView nextAirport)
+    {
         float width = previousAirport.getPaint().measureText((String)previousAirport.getText());
         Shader textShader=new LinearGradient(0, 0, width , previousAirport.getText().length(),
                 new int[]{
@@ -196,15 +220,40 @@ public class SlideAdapter extends PagerAdapter {
                 }, null, Shader.TileMode.CLAMP);
         nextAirport.getPaint().setShader(rightTextShader);
 
+    }
 
-        container.addView(view);
-        currentAirport = airports.get(position);
+    void updateSnowtam(View view,Snowtam snowtam)
+    {
+        final TextView date = view.findViewById(R.id.date);
+        final TextView runway = view.findViewById(R.id.runway);
+        final TextView clearedL = view.findViewById(R.id.clearedL);
+        final TextView clearedW = view.findViewById(R.id.clearedW);
+        final TextView state = view.findViewById(R.id.state);
+        final TextView mean = view.findViewById(R.id.meanDepth);
 
-        return view;
+        final TextView dateTitle = view.findViewById(R.id.dateTitle);
+        final TextView runwayTitle = view.findViewById(R.id.runwayTitle);
+        final TextView stateTitle = view.findViewById(R.id.stateTitle);
+
+
+        dateTitle.setVisibility(View.VISIBLE);
+        runwayTitle.setVisibility(View.VISIBLE);
+        stateTitle.setVisibility(View.VISIBLE);
+
+
+
+        date.setText(snowtam.getDate().trim());
+        runway.setText(snowtam.getRunway().trim());
+        clearedL.setText(snowtam.getClearedL().trim());
+        clearedW.setText(snowtam.getClearedW().trim());
+        state.setText(snowtam.getState().trim());
+        mean.setText(snowtam.getMeanDepth().trim());
+
+
     }
 
     @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
+    public void destroyItem(ViewGroup container, int position, @NonNull Object object) {
         container.removeView((LinearLayout)object);
     }
 
