@@ -43,7 +43,7 @@ public class SlideAdapter extends PagerAdapter {
 
     SlideAdapter(Context context,POSTRequest postRequest) {
         this.context = context;
-        Mapbox.getInstance(context, "pk.eyJ1IjoiYmFyYm91aWxsZSIsImEiOiJjazNlN3BvaHIxY3F1M2NuM2pvM3dwOTBlIn0.pZrTwcJxH6x1EU6RFrmceg");
+        Mapbox.getInstance(context, "pk.**************************");
         this.postRequest = postRequest;
 
     }
